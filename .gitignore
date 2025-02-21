@@ -1,0 +1,44 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Environment variables
+.env
+
+# PyCharm-specific files
+.idea/
+
+# MacOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Database files
+*.sqlite3
+
+# Python egg metadata
+*.egg-info/
+
+# VSCode settings (optional)
+.vscode/
+
+# Node modules (if you used npm for bootstrap)
+node_modules/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Migrations (if using Flask-Migrate or Alembic)
+migrations/
+
+# Compiled assets
+*.map

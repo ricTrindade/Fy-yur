@@ -12,13 +12,24 @@ import logging
 from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
+import os
+from dotenv import load_dotenv
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 moment = Moment(app)
-app.config.from_object('config')
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# Check if DATABASE_URL is loaded
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL not found. Check your .env file or environment variables.")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db = SQLAlchemy(app)
 
 # TODO: connect to a local postgresql database
