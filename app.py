@@ -76,30 +76,35 @@ def index():
 #  Venues page Controller
 @app.route('/venues')
 def venues():
-  # TODO: replace with real venues data.
-  #       num_upcoming_shows should be aggregated based on number of upcoming shows per venue.
-  data=[{
-    "city": "San Francisco",
-    "state": "CA",
-    "venues": [{
-      "id": 1,
-      "name": "The Musical Hop",
-      "num_upcoming_shows": 0,
-    }, {
-      "id": 3,
-      "name": "Park Square Live Music & Coffee",
-      "num_upcoming_shows": 1,
-    }]
-  }, {
-    "city": "New York",
-    "state": "NY",
-    "venues": [{
-      "id": 2,
-      "name": "The Dueling Pianos Bar",
-      "num_upcoming_shows": 0,
-    }]
-  }]
-  return render_template('pages/venues.html', areas=data);
+  # Query table to get venues
+  venues_in_db = Venue.query.order_by('id').all()
+  data = []
+
+  # Create a dictionary to group venues by (city, state)
+  grouped_venues = {}
+
+  for venue in venues_in_db:
+    venue_data = {
+      "id": venue.id,
+      "name": venue.name,
+      "num_upcoming_shows":  0 #TODO:len([show for show in venue.shows if show.start_time > datetime.now()])
+    }
+
+    # Group venues by city and state
+    key = (venue.city, venue.state)
+    if key not in grouped_venues:
+      grouped_venues[key] = []
+    grouped_venues[key].append(venue_data)
+
+  # Build the final data structure
+  for (city, state), venues_var in grouped_venues.items():
+    data.append({
+      "city": city,
+      "state": state,
+      "venues": venues_var
+    })
+
+  return render_template('pages/venues.html', areas=data)
 
 # Search Through Venues
 @app.route('/venues/search', methods=['POST'])
@@ -202,7 +207,7 @@ def show_venue(venue_id):
   data = list(filter(lambda d: d['id'] == venue_id, [data1, data2, data3]))[0]
   return render_template('pages/show_venue.html', venue=data)
 
-#  Create Venue # TODO: Need to understand this method and the one below
+#  Create Venue #
 @app.route('/venues/create', methods=['GET'])
 def create_venue_form():
   form = VenueForm()
