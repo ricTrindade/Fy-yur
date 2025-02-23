@@ -21,6 +21,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+# Association Table
+show = db.Table('show',
+    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'), primary_key=True),
+    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), primary_key=True),
+    db.Column('start_time', db.DateTime, nullable=False)
+)
+
 # Venue Model
 class Venue(db.Model):
     __tablename__ = 'Venue'
@@ -33,6 +40,7 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    venues = db.relationship('Venue', secondary=show, backref=db.backref('artists', lazy=True))
     # TODO: Genre
     # TODO: Current Seeking Talent
 
