@@ -57,8 +57,6 @@ class Artist(db.Model):
 
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
 
-# TODO: area Model
-
 # Filters.
 def format_datetime(value, format='medium'):
   date = dateutil.parser.parse(value)
@@ -235,17 +233,17 @@ def delete_venue(venue_id):
 # Get Artists
 @app.route('/artists')
 def artists():
-  # TODO: replace with real data returned from querying the database
-  data=[{
-    "id": 4,
-    "name": "Guns N Petals",
-  }, {
-    "id": 5,
-    "name": "Matt Quevedo",
-  }, {
-    "id": 6,
-    "name": "The Wild Sax Band",
-  }]
+
+  # Query Table to Get Artists
+  artists_in_db = Artist.query.order_by('id').all()
+  data=[]
+
+  for artist in artists_in_db:
+    artist_id = artist.id
+    artist_name = artist.name
+    artist_data = {"id" : artist_id, "name" : artist_name}
+    data.append(artist_data)
+
   return render_template('pages/artists.html', artists=data)
 
 # Search Through Artists
