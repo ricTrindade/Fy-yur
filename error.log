@@ -257,3 +257,10 @@ Traceback (most recent call last):
     data = list(filter(lambda d: d['id'] == artist_id, data))[0]
 IndexError: list index out of range
 2025-02-24 10:13:43,455 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:440]
+2025-02-24 11:17:03,647 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:19:56,566 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:24:10,369 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:25:13,108 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:27:13,782 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:27:23,734 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:27:31,514 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]

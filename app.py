@@ -1,4 +1,6 @@
 import json
+import sys
+
 import dateutil.parser
 import babel
 from flask import Flask, render_template, request, Response, flash, redirect, url_for
@@ -16,6 +18,7 @@ from flask_migrate import Migrate
 
 # App & DB Config
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 moment = Moment(app) # TODO: Investigate what this is!
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -34,7 +37,7 @@ show = db.Table('show',
 class Venue(db.Model):
     __tablename__ = 'Venue'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
     genres = db.Column(ARRAY(db.String), nullable=False)
     city = db.Column(db.String(120), nullable=False)
@@ -52,7 +55,7 @@ class Venue(db.Model):
 class Artist(db.Model):
     __tablename__ = 'Artist'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String)
     city = db.Column(db.String(120))
     state = db.Column(db.String(120))
@@ -365,10 +368,53 @@ def create_artist_submission():
   # TODO: modify data to be the data object returned from db insertion
 
   # on successful db insert, flash success
-  flash('Artist ' + request.form['name'] + ' was successfully listed!')
   # TODO: on unsuccessful db insert, flash an error instead.
   # e.g., flash('An error occurred. Artist ' + data.name + ' could not be listed.')
-  return render_template('pages/home.html')
+
+  error = False
+  with app.app_context():
+    try:
+      # Get Data from JSON
+      name = request.form['name']
+      city = request.form['city']
+      state = request.form['state']
+      phone = request.form['phone']
+      genres = request.form.getlist('genres')
+      website = request.form['website_link']
+      seeking_venue = True if request.form.get('seeking_venue') == 'on' else False
+      seeking_description = request.form['seeking_description']
+      image_link = request.form['image_link']
+      facebook_link = request.form['facebook_link']
+
+      # Create artist
+      artist = Artist(
+        name = name,
+        city = city,
+        state = state,
+        phone = phone,
+        genres = genres,
+        website = website,
+        seeking_venue = seeking_venue,
+        seeking_description = seeking_description,
+        image_link = image_link,
+        facebook_link = facebook_link
+      )
+
+      # Add artist to the database
+      db.session.add(artist)
+      db.session.commit()
+    except:
+      error = True
+      db.session.rollback()
+      print(sys.exc_info())
+    finally:
+      db.session.close()
+
+  if not error:
+    flash('Artist successfully listed!')
+  else:
+    flash('An error occurred. Artist could not be listed.')
+  return redirect(url_for('index'))
 
 #  GET ALL Shows
 @app.route('/shows')
