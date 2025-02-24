@@ -195,15 +195,52 @@ def create_venue_form():
 
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
-  # TODO: insert form data as a new Venue record in the db, instead
-  # TODO: modify data to be the data object returned from db insertion
+  error = False
+  with app.app_context():
+    try:
+      # Get Data from JSON
+      name = request.form['name']
+      city = request.form['city']
+      state = request.form['state']
+      address = request.form['address']
+      phone = request.form['phone']
+      genres = request.form.getlist('genres')
+      website = request.form['website_link']
+      seeking_talent = True if request.form.get('seeking_talent') == 'on' else False
+      seeking_description = request.form['seeking_description']
+      image_link = request.form['image_link']
+      facebook_link = request.form['facebook_link']
 
-  # on successful db insert, flash success
-  flash('Venue ' + request.form['name'] + ' was successfully listed!')
-  # TODO: on unsuccessful db insert, flash an error instead.
-  # e.g., flash('An error occurred. Venue ' + data.name + ' could not be listed.')
-  # see: http://flask.pocoo.org/docs/1.0/patterns/flashing/
-  return render_template('pages/home.html')
+      # Create artist
+      venue = Venue(
+        name=name,
+        city=city,
+        state=state,
+        address = address,
+        phone=phone,
+        genres=genres,
+        website=website,
+        seeking_talent=seeking_talent,
+        seeking_description=seeking_description,
+        image_link=image_link,
+        facebook_link=facebook_link
+      )
+
+      # Add artist to the database
+      db.session.add(venue)
+      db.session.commit()
+    except:
+      error = True
+      db.session.rollback()
+      print(sys.exc_info())
+    finally:
+      db.session.close()
+
+  if not error:
+    flash('Venue successfully listed!')
+  else:
+    flash('An error occurred. Venue could not be listed.')
+  return redirect(url_for('index'))
 
 # Delete Venues by ID
 @app.route('/venues/<venue_id>', methods=['DELETE'])
@@ -363,13 +400,6 @@ def create_artist_form():
 #  Create Artist
 @app.route('/artists/create', methods=['POST'])
 def create_artist_submission():
-  # called upon submitting the new artist listing form
-  # TODO: insert form data as a new Venue record in the db, instead
-  # TODO: modify data to be the data object returned from db insertion
-
-  # on successful db insert, flash success
-  # TODO: on unsuccessful db insert, flash an error instead.
-  # e.g., flash('An error occurred. Artist ' + data.name + ' could not be listed.')
 
   error = False
   with app.app_context():

@@ -39,7 +39,7 @@ INSERT INTO show VALUES (
 
 SELECT * FROM show;
 
-SELECT pg_get_serial_sequence('"Artist"', 'id');
+SELECT pg_get_serial_sequence('"Venue"', 'id');
 SELECT setval('Artist_id_seq', (SELECT MAX(id) FROM "Artist"));
 
-SELECT setval('"Artist_id_seq"', (SELECT MAX(id) FROM "Artist"));
+SELECT setval('"Venue_id_seq"', (SELECT MAX(id) FROM "Artist"));

@@ -264,3 +264,5 @@ IndexError: list index out of range
 2025-02-24 11:27:13,782 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
 2025-02-24 11:27:23,734 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
 2025-02-24 11:27:31,514 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:486]
+2025-02-24 11:40:31,458 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:516]
+2025-02-24 11:41:03,186 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:516]
