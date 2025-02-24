@@ -1,81 +1,22 @@
-import json
 import sys
 
 import dateutil.parser
 import babel
-from flask import Flask, render_template, request, Response, flash, redirect, url_for
-from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, request, flash, redirect, url_for
 import logging
 from logging import Formatter, FileHandler
-from flask_wtf import Form
-from sqlalchemy import select, ARRAY
-
-from config import SQLALCHEMY_DATABASE_URI
+from sqlalchemy import select
+from models import app, show, Venue, Artist, db
 from forms import *
-import os
-from dotenv import load_dotenv
-from flask_migrate import Migrate
-
-# App & DB Config
-app = Flask(__name__)
-app.secret_key = os.urandom(24)
-moment = Moment(app) # TODO: Investigate what this is!
-load_dotenv()
-DATABASE_URL = SQLALCHEMY_DATABASE_URI
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-# Association Table
-show = db.Table('show',
-    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'), primary_key=True),
-    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), primary_key=True),
-    db.Column('start_time', db.DateTime, nullable=False)
-)
-
-# Venue Model
-class Venue(db.Model):
-    __tablename__ = 'Venue'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String, nullable=False)
-    genres = db.Column(ARRAY(db.String), nullable=False)
-    city = db.Column(db.String(120), nullable=False)
-    state = db.Column(db.String(120), nullable=False)
-    address = db.Column(db.String(120), nullable=False)
-    phone = db.Column(db.String(120), nullable=False)
-    website = db.Column(db.String(500), nullable=False)
-    seeking_talent = db.Column(db.Boolean, nullable=False, default=False)
-    seeking_description = db.Column(db.String(120), nullable=True)
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
-    artists = db.relationship('Artist', secondary=show, backref=db.backref('venues', lazy=True))
-
-# Artist Model
-class Artist(db.Model):
-    __tablename__ = 'Artist'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String)
-    city = db.Column(db.String(120))
-    state = db.Column(db.String(120))
-    phone = db.Column(db.String(120))
-    genres = db.Column(ARRAY(db.String), nullable=True)
-    website = db.Column(db.String(500), nullable=True)
-    seeking_venue = db.Column(db.Boolean, nullable=True, default=False)
-    seeking_description = db.Column(db.String(120), nullable=True)
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
 
 # Filters.
-def format_datetime(value, format='medium'):
+def format_datetime(value, format_='medium'):
   date = dateutil.parser.parse(value)
-  if format == 'full':
-      format="EEEE MMMM, d, y 'at' h:mma"
-  elif format == 'medium':
-      format="EE MM, dd, y h:mma"
-  return babel.dates.format_datetime(date, format, locale='en')
+  if format_ == 'full':
+      format_= "EEEE MMMM, d, y 'at' h:mma"
+  elif format_ == 'medium':
+      format_= "EE MM, dd, y h:mma"
+  return babel.dates.format_datetime(date, format_, locale='en')
 
 app.jinja_env.filters['datetime'] = format_datetime # TODO: I am not sure what this is
 
@@ -280,7 +221,7 @@ def delete_venue(venue_id):
   # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
 
   # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
-  # clicking that button delete it from the db then redirect the user to the homepage
+  # clicking that button deletes it from the db then redirect the user to the homepage
   return None
 
 # Get Artists
