@@ -349,3 +349,7 @@ AttributeError: 'Artist' object has no attribute 'address'
 2025-02-24 21:15:25,364 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
 2025-02-24 21:21:24,613 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
 2025-02-24 21:23:20,466 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
+2025-02-24 22:13:39,932 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:608]
+2025-02-24 22:14:50,651 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:608]
+2025-02-24 22:15:11,348 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:608]
+2025-02-24 22:15:20,911 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:608]

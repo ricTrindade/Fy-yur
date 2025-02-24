@@ -46,3 +46,5 @@ SELECT setval('"Venue_id_seq"', (SELECT MAX(id) FROM "Artist"));
 
 DELETE FROM "Venue" WHERE id =6
 ;
+
+CREATE DATABASE MigrateFyyurTest;

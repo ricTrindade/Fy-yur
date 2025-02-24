@@ -1,3 +1,4 @@
+import os
 import sys
 
 import dateutil.parser
@@ -217,12 +218,27 @@ def create_venue_submission():
 # Delete Venues by ID
 @app.route('/venues/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
-  # TODO: Complete this endpoint for taking a venue_id, and using
-  # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
+  try:
+    # Find the venue by ID
+    venue = Venue.query.get(venue_id)
 
-  # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
-  # clicking that button deletes it from the db then redirect the user to the homepage
-  return None
+    if not venue:
+      flash(f"Venue with ID {venue_id} not found.", "error")
+      return redirect(url_for('index'))  # Redirect to homepage if venue not found
+
+    # Delete the venue
+    db.session.delete(venue)
+    db.session.commit()
+    flash(f"Venue '{venue.name}' was successfully deleted!", "success")
+
+  except Exception as e:
+    db.session.rollback()
+    flash(f"An error occurred while deleting the venue: {str(e)}", "error")
+  finally:
+    db.session.close()
+
+    # Redirect to homepage after deletion
+  return redirect(url_for('index'))
 
 # Get Artists
 @app.route('/artists') 
@@ -606,13 +622,7 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
-# Default port:
-if __name__ == '__main__':
-    app.run()
 
-# Or specify port manually:
-'''
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-'''
