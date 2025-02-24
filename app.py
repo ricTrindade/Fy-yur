@@ -11,6 +11,7 @@ from logging import Formatter, FileHandler
 from flask_wtf import Form
 from sqlalchemy import select, ARRAY
 
+from config import SQLALCHEMY_DATABASE_URI
 from forms import *
 import os
 from dotenv import load_dotenv
@@ -21,7 +22,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 moment = Moment(app) # TODO: Investigate what this is!
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
