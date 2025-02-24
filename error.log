@@ -343,3 +343,9 @@ Traceback (most recent call last):
 AttributeError: 'Artist' object has no attribute 'address'
 2025-02-24 15:04:55,375 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:601]
 2025-02-24 15:16:04,120 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:638]
+2025-02-24 21:05:26,652 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:661]
+2025-02-24 21:08:46,784 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
+2025-02-24 21:09:05,799 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
+2025-02-24 21:15:25,364 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
+2025-02-24 21:21:24,613 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]
+2025-02-24 21:23:20,466 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:673]

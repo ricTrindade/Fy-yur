@@ -97,10 +97,17 @@ def venues():
 
   # Create data to send to Front-End
   for venue in venues_in_db:
+
+    # Get all upcoming shows
+    num_upcoming_shows = db.session.query(show).filter(
+      show.c.venue_id == venue.id,
+      show.c.start_time > datetime.now()
+    ).count()
+
     venue_data = {
       "id": venue.id,
       "name": venue.name,
-      "num_upcoming_shows":  0 #TODO:len([show for show in venue.shows if show.start_time > datetime.now()])
+      "num_upcoming_shows": num_upcoming_shows
     }
 
     # Group venues by city and state
