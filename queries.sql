@@ -1,20 +1,23 @@
 CREATE DATABASE fyyur;
 
-UPDATE "Artist"
-SET image_link = 'https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80';
+UPDATE "Venue"
+SET facebook_link = 'https://www.facebook.com/ParkSquareLiveMusicAndCoffee'
+;
 
 SELECT * FROM "Artist";
-SELECT * FROM "Venue";
+SELECT * FROM "Venue" ORDER BY id;
 INSERT INTO "Venue" VALUES (
-    3,
+    4,
     'Dragao',
     'Porto',
-    'Porto',
+    'Lisbon',
     '155 Helgrain ST',
     '12413415',
     'Link Here!',
     'Facebook Link here'
 );
+
+DELETE FROM "Venue" WHERE id = 4;
 
 
 INSERT INTO "Artist" VALUES (

@@ -6,3 +6,138 @@
 2025-02-21 12:59:18,372 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:497]
 2025-02-23 20:50:19,533 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:514]
 2025-02-23 20:51:20,919 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:514]
+2025-02-24 08:20:14,391 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:500]
+2025-02-24 08:20:43,841 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:500]
+2025-02-24 08:21:30,245 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:500]
+2025-02-24 08:22:06,335 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:500]
+2025-02-24 08:53:05,717 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:470]
+2025-02-24 08:54:53,250 ERROR: Exception on /venues/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 148, in show_venue
+    show_rel = db.session.query(shows).filter_by(venue_id=venue.id, artist_id=artist.id).first()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 1681, in query
+    return self._proxied.query(*entities, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2955, in query
+    return self._query_cls(entities, self, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 275, in __init__
+    self._set_entities(entities)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 287, in _set_entities
+    self._raw_columns = [
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 288, in <listcomp>
+    coercions.expect(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/coercions.py", line 332, in expect
+    return lambdas.LambdaElement(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 213, in __init__
+    rec = self._retrieve_tracker_rec(fn, apply_propagate_attrs, opts)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 229, in _retrieve_tracker_rec
+    tracker = AnalyzedCode.get(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 753, in get
+    cls._fns[fn.__code__] = analyzed = AnalyzedCode(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 795, in __init__
+    self._setup_additional_closure_trackers(fn, lambda_element, opts)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 863, in _setup_additional_closure_trackers
+    analyzed_function = AnalyzedFunction(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 1129, in __init__
+    self._instrument_and_run_function(lambda_element)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 1199, in _instrument_and_run_function
+    self.expr = lambda_element._invoke_user_fn(tracker_instrumented_fn)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 425, in _invoke_user_fn
+    return fn()  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 407, in shows
+    shows_in_db = db.session.execute(select(show)).fetchall()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 1329, in __call__
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Can't invoke Python callable execute() inside of lambda expression argument at <code object shows at 0x1022dc710, file "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 404>; lambda SQL constructs should not invoke functions from closure variables to produce literal values since the lambda SQL system normally extracts bound values without actually invoking the lambda or any functions within it.  Call the function outside of the lambda and assign to a local variable that is used in the lambda as a closure variable, or set track_bound_values=False if the return value of this function is used in some other way other than a SQL bound value.
+2025-02-24 08:55:48,265 ERROR: Exception on /venues/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 148, in show_venue
+    show_rel = db.session.query(shows).filter_by(venue_id=venue.id, artist_id=artist.id).first()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 1681, in query
+    return self._proxied.query(*entities, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2955, in query
+    return self._query_cls(entities, self, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 275, in __init__
+    self._set_entities(entities)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 287, in _set_entities
+    self._raw_columns = [
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 288, in <listcomp>
+    coercions.expect(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/coercions.py", line 332, in expect
+    return lambdas.LambdaElement(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 213, in __init__
+    rec = self._retrieve_tracker_rec(fn, apply_propagate_attrs, opts)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 229, in _retrieve_tracker_rec
+    tracker = AnalyzedCode.get(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 753, in get
+    cls._fns[fn.__code__] = analyzed = AnalyzedCode(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 795, in __init__
+    self._setup_additional_closure_trackers(fn, lambda_element, opts)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 863, in _setup_additional_closure_trackers
+    analyzed_function = AnalyzedFunction(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 1129, in __init__
+    self._instrument_and_run_function(lambda_element)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 1199, in _instrument_and_run_function
+    self.expr = lambda_element._invoke_user_fn(tracker_instrumented_fn)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 425, in _invoke_user_fn
+    return fn()  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 407, in shows
+    shows_in_db = db.session.execute(select(show)).fetchall()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/lambdas.py", line 1329, in __call__
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Can't invoke Python callable execute() inside of lambda expression argument at <code object shows at 0x1022dc710, file "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 404>; lambda SQL constructs should not invoke functions from closure variables to produce literal values since the lambda SQL system normally extracts bound values without actually invoking the lambda or any functions within it.  Call the function outside of the lambda and assign to a local variable that is used in the lambda as a closure variable, or set track_bound_values=False if the return value of this function is used in some other way other than a SQL bound value.
+2025-02-24 08:57:25,339 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:470]
+2025-02-24 09:10:26,069 ERROR: Exception on /artists/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 325, in show_artist
+    data = list(filter(lambda d: d['id'] == artist_id, [data1, data2, data3]))[0]
+IndexError: list index out of range
+2025-02-24 09:10:33,794 ERROR: Exception on /artists/2 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 325, in show_artist
+    data = list(filter(lambda d: d['id'] == artist_id, [data1, data2, data3]))[0]
+IndexError: list index out of range
+2025-02-24 09:10:40,191 ERROR: Exception on /artists/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 325, in show_artist
+    data = list(filter(lambda d: d['id'] == artist_id, [data1, data2, data3]))[0]
+IndexError: list index out of range
