@@ -327,3 +327,19 @@ Make sure all imports, decorators, functions, etc. needed to set up the applicat
 2025-02-24 14:53:29,661 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:598]
 2025-02-24 14:55:19,183 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:598]
 2025-02-24 14:56:56,502 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:598]
+2025-02-24 15:04:11,572 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:601]
+2025-02-24 15:04:18,630 ERROR: Exception on /venues/1/edit [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 441, in edit_venue
+    "address" : venue.address,
+AttributeError: 'Artist' object has no attribute 'address'
+2025-02-24 15:04:55,375 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:601]
+2025-02-24 15:16:04,120 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:638]
