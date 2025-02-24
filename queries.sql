@@ -43,3 +43,6 @@ SELECT pg_get_serial_sequence('"Venue"', 'id');
 SELECT setval('Artist_id_seq', (SELECT MAX(id) FROM "Artist"));
 
 SELECT setval('"Venue_id_seq"', (SELECT MAX(id) FROM "Artist"));
+
+DELETE FROM "Venue" WHERE id =6
+;
