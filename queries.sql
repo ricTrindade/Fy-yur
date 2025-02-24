@@ -1,8 +1,8 @@
 CREATE DATABASE fyyur;
 
-UPDATE "Venue"
-SET facebook_link = 'https://www.facebook.com/ParkSquareLiveMusicAndCoffee'
-;
+UPDATE "Artist"
+SET seeking_description = 'YO, I am looking for a venue!!!'
+WHERE seeking_venue = TRUE;
 
 SELECT * FROM "Artist";
 SELECT * FROM "Venue" ORDER BY id;

@@ -36,13 +36,13 @@ class Venue(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    genres = db.Column(ARRAY(db.String), nullable=True)
+    genres = db.Column(ARRAY(db.String), nullable=False)
     city = db.Column(db.String(120), nullable=False)
     state = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(120), nullable=False)
-    website = db.Column(db.String(500), nullable=True)
-    seeking_talent = db.Column(db.Boolean, nullable=False, default=True)
+    website = db.Column(db.String(500), nullable=False)
+    seeking_talent = db.Column(db.Boolean, nullable=False, default=False)
     seeking_description = db.Column(db.String(120), nullable=True)
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
@@ -57,14 +57,12 @@ class Artist(db.Model):
     city = db.Column(db.String(120))
     state = db.Column(db.String(120))
     phone = db.Column(db.String(120))
-    genres = db.Column(db.String(120))
+    genres = db.Column(ARRAY(db.String), nullable=True)
+    website = db.Column(db.String(500), nullable=True)
+    seeking_venue = db.Column(db.Boolean, nullable=True, default=False)
+    seeking_description = db.Column(db.String(120), nullable=True)
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
-    # currently seeking performance venues
-
-    # TODO: implement any missing fields, as a database migration using Flask-Migrate
-
-# TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
 
 # Filters.
 def format_datetime(value, format='medium'):
