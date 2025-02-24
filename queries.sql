@@ -32,9 +32,9 @@ INSERT INTO "Artist" VALUES (
 );
 
 INSERT INTO show VALUES (
-    2,
+    3,
     1,
-    '2025-06-03 20:00:00'
+    '2024-06-03 20:00:00'
 );
 
 SELECT * FROM show;
