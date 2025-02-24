@@ -4,7 +4,7 @@ UPDATE "Artist"
 SET seeking_description = 'YO, I am looking for a venue!!!'
 WHERE seeking_venue = TRUE;
 
-SELECT * FROM "Artist";
+SELECT * FROM "Artist" ORDER BY id;
 SELECT * FROM "Venue" ORDER BY id;
 INSERT INTO "Venue" VALUES (
     4,

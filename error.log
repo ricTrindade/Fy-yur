@@ -324,3 +324,6 @@ AssertionError: The setup method 'route' can no longer be called on the applicat
 Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
 2025-02-24 11:58:07,805 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:534]
 2025-02-24 11:59:19,500 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:534]
+2025-02-24 14:53:29,661 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:598]
+2025-02-24 14:55:19,183 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:598]
+2025-02-24 14:56:56,502 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:598]
