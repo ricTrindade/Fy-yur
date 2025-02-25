@@ -19,7 +19,7 @@ def format_datetime(value, format_='medium'):
       format_= "EE MM, dd, y h:mma"
   return babel.dates.format_datetime(date, format_, locale='en')
 
-app.jinja_env.filters['datetime'] = format_datetime # TODO: I am not sure what this is
+app.jinja_env.filters['datetime'] = format_datetime
 
 # Home page Controller
 @app.route('/') 
@@ -368,7 +368,6 @@ def edit_artist(artist_id):
     "seeking_description": artist.seeking_description,
     "image_link": artist.image_link,
   }
-  # TODO: populate form with fields from artist with ID <artist_id>
   return render_template('forms/edit_artist.html', form=form, artist=artist_data)
 
 #  Update artist Info
@@ -437,7 +436,6 @@ def edit_venue(venue_id):
     "seeking_description": venue.seeking_description,
     "image_link": venue.image_link,
   }
-  # TODO: populate form with values from venue with ID <venue_id>
   return render_template('forms/edit_venue.html', form=form, venue=venue_data)
 
 # Edit venue Info

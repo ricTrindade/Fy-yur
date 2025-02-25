@@ -11,7 +11,7 @@ from sqlalchemy import ARRAY
 # App & DB Config
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-moment = Moment(app) # TODO: Investigate what this is!
+moment = Moment(app)
 load_dotenv()
 DATABASE_URL = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
