@@ -20,9 +20,9 @@ migrate = Migrate(app, db)
 
 # Association Table
 show = db.Table('show',
-    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'), primary_key=True),
-    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), primary_key=True),
-    db.Column('start_time', db.DateTime, nullable=False)
+    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'), nullable=False, primary_key=True),
+    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), nullable=False, primary_key=True),
+    db.Column('start_time', db.DateTime, nullable=False, primary_key=True)
 )
 
 # Venue Model
