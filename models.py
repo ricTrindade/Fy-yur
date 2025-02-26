@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_migrate import Migrate
+
 from config import SQLALCHEMY_DATABASE_URI
 from flask_wtf import Form
 from flask_moment import Moment
@@ -18,12 +19,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-# Association Table
-show = db.Table('show',
-    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'), nullable=False, primary_key=True),
-    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), nullable=False, primary_key=True),
-    db.Column('start_time', db.DateTime, nullable=False, primary_key=True)
-)
+# Show Model
+class Show(db.Model):
+
+    __tablename__ = 'Show'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    artist_id = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
+    venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'), nullable=False)
+    start_time = db.Column(db.DateTime,  nullable=False)
+
+    # Relationships
+    artist = db.relationship('Artist', back_populates='shows')
+    venue = db.relationship('Venue', back_populates='shows')
+
+    def __repr__(self):
+        artist_name = Artist.query.get(self.artist_id).name
+        venue_name = Venue.query.get(self.venue_id).name
+        return f'<"Show:id({self.id}){artist_name}@{venue_name}, start_time={self.start_time}">'
 
 # Venue Model
 class Venue(db.Model):
@@ -41,7 +53,12 @@ class Venue(db.Model):
     seeking_description = db.Column(db.String(120), nullable=True)
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
-    artists = db.relationship('Artist', secondary=show, backref=db.backref('venues', lazy=True))
+
+    # Relationships
+    shows = db.relationship('Show', back_populates='venue', lazy=True)
+
+    def __repr__(self):
+        return f'<"VENUE:id({self.id}){self.name}@{self.address},{self.city},{self.state}">'
 
 # Artist Model
 class Artist(db.Model):
@@ -58,3 +75,9 @@ class Artist(db.Model):
     seeking_description = db.Column(db.String(120), nullable=True)
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+
+    # Relationships
+    shows = db.relationship('Show', back_populates='artist', lazy=True)
+
+    def __repr__(self):
+        return f'<"ARTIST:id({self.id}){self.name}@{self.city},{self.state}">'

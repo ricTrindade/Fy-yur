@@ -7,7 +7,7 @@ from flask import render_template, request, flash, redirect, url_for
 import logging
 from logging import Formatter, FileHandler
 from sqlalchemy import select
-from models import app, show, Venue, Artist, db
+from models import app, Show, Venue, Artist, db
 from forms import *
 
 # Filters.
@@ -41,9 +41,9 @@ def venues():
   for venue in venues_in_db:
 
     # Get all upcoming shows
-    num_upcoming_shows = db.session.query(show).filter(
-      show.c.venue_id == venue.id,
-      show.c.start_time > datetime.now()
+    num_upcoming_shows = db.session.query(Venue, Show).join(Show).filter(
+      Show.venue_id == venue.id,
+      Show.start_time > datetime.now()
     ).count()
 
     venue_data = {
@@ -89,9 +89,9 @@ def search_venues():
   for venue in venues_in_db:
     
     # Count upcoming shows
-    num_upcoming_shows = db.session.query(show).filter(
-      show.c.venue_id == venue.id,
-      show.c.start_time > datetime.now()
+    num_upcoming_shows = db.session.query(Show, Venue).join(Show).filter(
+      Show.venue_id == venue.id,
+      Show.start_time > datetime.now()
     ).count()
 
     response["data"].append({
@@ -117,24 +117,22 @@ def show_venue(venue_id):
     upcoming_shows = []
 
     # Iterate over all artists associated with the venue
-    for artist in venue.artists:
-      
-      # Find the corresponding show details
-      show_rel = db.session.query(show).filter_by(venue_id=venue.id, artist_id=artist.id).first()
+    for show in venue.shows:
 
-      if show_rel:
-        show_data = {
-          "artist_id": artist.id,
-          "artist_name": artist.name,
-          "artist_image_link": artist.image_link,
-          "start_time": format_datetime(str(show_rel.start_time))
-        }
+      artist = show.artist
 
-        # Categorise show as past or upcoming based on current date
-        if show_rel.start_time < datetime.now():
-          past_shows.append(show_data)
-        else:
-          upcoming_shows.append(show_data)
+      show_data = {
+        "artist_id": artist.id,
+        "artist_name": artist.name,
+        "artist_image_link": artist.image_link,
+        "start_time": format_datetime(str(show.start_time))
+      }
+
+      # Categorise show as past or upcoming based on current date
+      if show.start_time < datetime.now():
+        past_shows.append(show_data)
+      else:
+        upcoming_shows.append(show_data)
 
     # Create venue data dictionary
     venue_data = {
@@ -278,9 +276,9 @@ def search_artists():
   for artist in artist_in_db:
 
     # Count upcoming shows
-    num_upcoming_shows = db.session.query(show).filter(
-      show.c.artist_id == artist.id,
-      show.c.start_time > datetime.now()
+    num_upcoming_shows = db.session.query(Show, Artist).join(Show).filter(
+      Show.artist_id == artist.id,
+      Show.start_time > datetime.now()
     ).count()
 
     response["data"].append({
@@ -305,22 +303,22 @@ def show_artist(artist_id):
     past_shows = []
     upcoming_shows = []
 
-    for venue in artist.venues:
-      show_rel = db.session.query(show).filter_by(venue_id=venue.id, artist_id=artist.id).first()
+    for show in artist.shows:
 
-      if show_rel:
-        show_data = {
-          "venue_id": venue.id,
-          "venue_name": venue.name,
-          "venue_image_link": venue.image_link,
-          "start_time": format_datetime(str(show_rel.start_time))
-        }
+      venue = show.venue
 
-        # Categorize show as past or upcoming based on current date
-        if show_rel.start_time < datetime.now():
-          past_shows.append(show_data)
-        else:
-          upcoming_shows.append(show_data)
+      show_data = {
+        "venue_id": venue.id,
+        "venue_name": venue.name,
+        "venue_image_link": venue.image_link,
+        "start_time": format_datetime(str(show.start_time))
+      }
+
+      # Categorize show as past or upcoming based on current date
+      if show.start_time < datetime.now():
+        past_shows.append(show_data)
+      else:
+        upcoming_shows.append(show_data)
 
     artist_data = {
       "id" : artist.id,
@@ -536,19 +534,22 @@ def create_artist_submission():
 def shows():
 
   # displays list of shows at /shows
-  shows_in_db = db.session.execute(select(show)).fetchall()
+  shows_in_db = Show.query.order_by('id').all()
   data = []
 
   # Create data to send to front end
-  for event in shows_in_db:
-    venue = Venue.query.get(event.venue_id)
+  for show in shows_in_db:
+
+    # Get Artist and Venue
+    artist = show.artist
+    venue = show.venue
+
     venue_id = venue.id
     venue_name = venue.name
-    artist = Artist.query.get(event.artist_id)
     artist_id = artist.id
     artist_name = artist.name
     artist_image_link = artist.image_link
-    start_time = event.start_time
+    start_time = show.start_time
     event_data = {
       "venue_id": venue_id,
       "venue_name": venue_name,
@@ -580,12 +581,12 @@ def create_show_submission():
     start_time = request.form['start_time']
 
     # Insert into the association table
-    insert_stmt = show.insert().values(
+    show = Show(
       artist_id=artist_id,
       venue_id=venue_id,
       start_time=format_datetime(str(start_time))
     )
-    db.session.execute(insert_stmt)
+    db.session.add(show)
     db.session.commit()
     flash('Show was successfully listed!')
 

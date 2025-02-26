@@ -362,3 +362,155 @@ AttributeError: 'Artist' object has no attribute 'address'
 2025-02-26 08:07:08,098 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
 2025-02-26 08:07:20,863 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
 2025-02-26 08:08:22,836 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
+2025-02-26 08:35:34,000 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
+2025-02-26 08:39:02,419 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
+2025-02-26 09:33:25,432 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
+2025-02-26 09:55:41,267 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
+2025-02-26 09:57:31,762 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 09:57:42,182 ERROR: Exception on /artists/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 300, in show_artist
+    artists_in_db = Artist.query.order_by('id').all()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask_sqlalchemy/model.py", line 22, in __get__
+    return cls.query_class(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 275, in __init__
+    self._set_entities(entities)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 287, in _set_entities
+    self._raw_columns = [
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 288, in <listcomp>
+    coercions.expect(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/coercions.py", line 388, in expect
+    insp._post_inspect
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 1257, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 2724, in _post_inspect
+    self._check_configure()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 2401, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 4213, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 4254, in _do_configure_registries
+    mapper._post_configure_properties()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 2418, in _post_configure_properties
+    prop.init()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/interfaces.py", line 589, in init
+    self.do_init()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/relationships.py", line 1656, in do_init
+    self._setup_entity()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/relationships.py", line 1888, in _setup_entity
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: relationship 'shows' expects a class or a mapper argument (received: <class 'flask_sqlalchemy.extension.SQLAlchemy._make_table_class.<locals>.Table'>)
+2025-02-26 10:04:49,714 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:08:49,323 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:08:55,786 ERROR: Exception on /venues [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 34, in venues
+    venues_in_db = Venue.query.order_by('id').all()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask_sqlalchemy/model.py", line 22, in __get__
+    return cls.query_class(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 275, in __init__
+    self._set_entities(entities)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 287, in _set_entities
+    self._raw_columns = [
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 288, in <listcomp>
+    coercions.expect(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/sql/coercions.py", line 388, in expect
+    insp._post_inspect
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 1257, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 2724, in _post_inspect
+    self._check_configure()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 2401, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 4213, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 4254, in _do_configure_registries
+    mapper._post_configure_properties()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 2418, in _post_configure_properties
+    prop.init()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/interfaces.py", line 589, in init
+    self.do_init()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/relationships.py", line 1661, in do_init
+    self._generate_backref()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/relationships.py", line 2147, in _generate_backref
+    self._add_reverse_property(self.back_populates)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/orm/relationships.py", line 1616, in _add_reverse_property
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: reverse_property 'artist' on relationship Venue.shows references relationship Show.artist, which does not reference mapper Mapper[Venue(Venue)]
+2025-02-26 11:10:13,589 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:12:58,864 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:14:20,717 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:15:52,273 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:16:53,108 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:18:38,972 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:19:43,840 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:21:20,969 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:22:48,103 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:24:40,701 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:24:48,507 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:25:07,911 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:25:32,420 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:35:17,121 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:48:04,711 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:624]
+2025-02-26 11:50:34,917 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:619]
+2025-02-26 11:50:49,298 ERROR: Exception on /artists/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 312, in show_artist
+    "venue_name": show.name,
+AttributeError: 'Show' object has no attribute 'name'
+2025-02-26 11:54:04,957 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:621]
+2025-02-26 13:07:31,648 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:619]
+2025-02-26 13:10:38,691 ERROR: Exception on /shows [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 537, in shows
+    shows_in_db = db.session.execute(select(show)).fetchall()
+NameError: name 'show' is not defined
+2025-02-26 13:15:15,953 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:622]
+2025-02-26 13:24:17,917 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:622]
+2025-02-26 13:26:35,197 ERROR: Exception on /artists/search [POST] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 279, in search_artists
+    num_upcoming_shows = db.session.query(show).filter(
+NameError: name 'show' is not defined
+2025-02-26 13:27:26,765 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:622]
+2025-02-26 13:29:10,650 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:622]
