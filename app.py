@@ -168,48 +168,40 @@ def create_venue_form():
 #  Create Venue
 @app.route('/venues/create', methods=['POST']) 
 def create_venue_submission():
+  form = VenueForm(request.form)
+  if form.validate():
+    try:
+      venue = Venue(
+        name=form.name.data,
+        city=form.city.data,
+        state=form.state.data,
+        address=form.address.data,
+        phone=form.phone.data,
+        genres=form.genres.data,
+        website=form.website_link.data,
+        seeking_talent=form.seeking_talent.data,
+        seeking_description=form.seeking_description.data,
+        image_link=form.image_link.data,
+        facebook_link=form.facebook_link.data
+      )
 
-  try:
-    # Get Data from Front End
-    name = request.form['name']
-    city = request.form['city']
-    state = request.form['state']
-    address = request.form['address']
-    phone = request.form['phone']
-    genres = request.form.getlist('genres')
-    website = request.form['website_link']
-    seeking_talent = True if request.form.get('seeking_talent') == 'y' else False
-    seeking_description = request.form['seeking_description']
-    image_link = request.form['image_link']
-    facebook_link = request.form['facebook_link']
+      # Add Venue to the database
+      db.session.add(venue)
+      db.session.commit()
+      flash('Venue successfully listed!')
 
-    # Create new Venue
-    venue = Venue(
-      name=name,
-      city=city,
-      state=state,
-      address = address,
-      phone=phone,
-      genres=genres,
-      website=website,
-      seeking_talent=seeking_talent,
-      seeking_description=seeking_description,
-      image_link=image_link,
-      facebook_link=facebook_link
-    )
+    except:
+      db.session.rollback()
+      flash('An error occurred. Venue could not be listed.')
+      print(sys.exc_info())
 
-    # Add Venue to the database
-    db.session.add(venue)
-    db.session.commit()
-    flash('Venue successfully listed!')
-
-  except:
-    db.session.rollback()
-    flash('An error occurred. Venue could not be listed.')
-    print(sys.exc_info())
-
-  finally:
-    db.session.close()
+    finally:
+      db.session.close()
+  else:
+    for field_name, error_messages in form.errors.items():
+      for error in error_messages:
+        flash(f"Error in {field_name}: {error}")
+    return redirect(url_for('create_venue_submission'))
 
   return redirect(url_for('index'))
 
@@ -371,43 +363,38 @@ def edit_artist(artist_id):
 #  Update artist Info
 @app.route('/artists/<int:artist_id>/edit', methods=['POST']) 
 def edit_artist_submission(artist_id):
-  try:
-    # Retrieve data from the form
-    new_name = request.form['name']
-    new_city = request.form['city']
-    new_state = request.form['state']
-    new_phone = request.form['phone']
-    new_genre = request.form.getlist('genres')
-    new_facebook_link = request.form['facebook_link']
-    new_image_link = request.form['image_link']
-    new_website = request.form['website_link']
-    new_seeking_venue = True if request.form.get('seeking_venue') == 'y' else False
-    new_seeking_description = request.form['seeking_description']
+  form = ArtistForm(request.form)
+  if form.validate():
+    try:
+      # Get Artist and Update Info
+      artist = Artist.query.get(artist_id)
+      artist.name = form.name.data
+      artist.city = form.city.data
+      artist.state = form.state.data
+      artist.phone = form.phone.data
+      artist.genre = form.genres.data
+      artist.facebook_link = form.facebook_link.data
+      artist.image_link = form.image_link.data
+      artist.website = form.website_link.data
+      artist.seeking_venue = form.seeking_venue.data
+      artist.seeking_description = form.seeking_description.data
 
-    # Get Artist and Update Info
-    artist = Artist.query.get(artist_id)
-    artist.name = new_name
-    artist.city = new_city
-    artist.state = new_state
-    artist.phone = new_phone
-    artist.genre = new_genre
-    artist.facebook_link = new_facebook_link
-    artist.image_link = new_image_link
-    artist.website = new_website
-    artist.seeking_venue = new_seeking_venue
-    artist.seeking_description = new_seeking_description
+      # commit those changes to DB
+      db.session.commit()
+      flash('Artist Info Was Updated')
 
-    # commit those changes to DB
-    db.session.commit()
-    flash('Artist Info Was Updated')
+    except Exception as e:
+      db.session.rollback()
+      flash('An error occurred. Artist could not be updated.')
+      print(f"Error: {e}")
 
-  except Exception as e:
-    db.session.rollback()
-    flash('An error occurred. Artist could not be updated.')
-    print(f"Error: {e}")
-
-  finally:
-    db.session.close()
+    finally:
+      db.session.close()
+  else:
+    for field_name, error_messages in form.errors.items():
+      for error in error_messages:
+        flash(f"Error in {field_name}: {error}")
+    return redirect(url_for('edit_artist_submission'))
 
   return redirect(url_for('show_artist', artist_id=artist_id))
 
@@ -439,45 +426,52 @@ def edit_venue(venue_id):
 # Edit venue Info
 @app.route('/venues/<int:venue_id>/edit', methods=['POST']) 
 def edit_venue_submission(venue_id):
-  try:
-    # Retrieve data from the form
-    new_name = request.form['name']
-    new_city = request.form['city']
-    new_state = request.form['state']
-    new_address = request.form['address']
-    new_phone = request.form['phone']
-    new_genre = request.form.getlist('genres')
-    new_facebook_link = request.form['facebook_link']
-    new_image_link = request.form['image_link']
-    new_website = request.form['website_link']
-    new_seeking_talent = True if request.form.get('seeking_talent') == 'y' else False
-    new_seeking_description = request.form['seeking_description']
+  form = VenueForm(request.form)
+  if form.validate():
+    try:
+      # Retrieve data from the form
+      new_name = request.form['name']
+      new_city = request.form['city']
+      new_state = request.form['state']
+      new_address = request.form['address']
+      new_phone = request.form['phone']
+      new_genre = request.form.getlist('genres')
+      new_facebook_link = request.form['facebook_link']
+      new_image_link = request.form['image_link']
+      new_website = request.form['website_link']
+      new_seeking_talent = True if request.form.get('seeking_talent') == 'y' else False
+      new_seeking_description = request.form['seeking_description']
 
-    # Get Venue and update Info
-    venue = Venue.query.get(venue_id)
-    venue.name = new_name
-    venue.city = new_city
-    venue.address = new_address
-    venue.state = new_state
-    venue.phone = new_phone
-    venue.genre = new_genre
-    venue.facebook_link = new_facebook_link
-    venue.image_link = new_image_link
-    venue.website = new_website
-    venue.seeking_venue = new_seeking_talent
-    venue.seeking_description = new_seeking_description
+      # Get Venue and update Info
+      venue = Venue.query.get(venue_id)
+      venue.name = new_name
+      venue.city = new_city
+      venue.address = new_address
+      venue.state = new_state
+      venue.phone = new_phone
+      venue.genre = new_genre
+      venue.facebook_link = new_facebook_link
+      venue.image_link = new_image_link
+      venue.website = new_website
+      venue.seeking_venue = new_seeking_talent
+      venue.seeking_description = new_seeking_description
 
-    # commit those changes to DB
-    db.session.commit()
-    flash('Venue Info Was Updated')
+      # commit those changes to DB
+      db.session.commit()
+      flash('Venue Info Was Updated')
 
-  except Exception as e:
-    db.session.rollback()
-    flash('An error occurred. Venue could not be updated.')
-    print(f"Error: {e}")
+    except Exception as e:
+      db.session.rollback()
+      flash('An error occurred. Venue could not be updated.')
+      print(f"Error: {e}")
 
-  finally:
-    db.session.close()
+    finally:
+      db.session.close()
+  else:
+    for field_name, error_messages in form.errors.items():
+      for error in error_messages:
+        flash(f"Error in {field_name}: {error}")
+    return redirect(url_for('edit_venue_submission'))
   return redirect(url_for('show_venue', venue_id=venue_id))
 
 #  Create Artist
@@ -489,43 +483,37 @@ def create_artist_form():
 #  Create Artist
 @app.route('/artists/create', methods=['POST']) 
 def create_artist_submission():
-  try:
-    # Get Data from the form
-    name = request.form['name']
-    city = request.form['city']
-    state = request.form['state']
-    phone = request.form['phone']
-    genres = request.form.getlist('genres')
-    website = request.form['website_link']
-    seeking_venue = True if request.form.get('seeking_venue') == 'y' else False
-    seeking_description = request.form['seeking_description']
-    image_link = request.form['image_link']
-    facebook_link = request.form['facebook_link']
+  form = ArtistForm(request.form)
+  if form.validate():
+    try:
+      artist = Artist(
+        name=form.name.data,
+        city=form.city.data,
+        state=form.state.data,
+        phone=form.phone.data,
+        genres=form.genres.data,
+        website=form.website_link.data,
+        seeking_venue=form.seeking_venue.data,
+        seeking_description=form.seeking_description.data,
+        image_link=form.image_link.data,
+        facebook_link=form.facebook_link.data
+      )
 
-    # Create artist
-    artist = Artist(
-      name = name,
-      city = city,
-      state = state,
-      phone = phone,
-      genres = genres,
-      website = website,
-      seeking_venue = seeking_venue,
-      seeking_description = seeking_description,
-      image_link = image_link,
-      facebook_link = facebook_link
-    )
-
-    # Add artist to the database
-    db.session.add(artist)
-    db.session.commit()
-    flash('Artist successfully listed!')
-  except:
-    db.session.rollback()
-    print(sys.exc_info())
-    flash('An error occurred. Artist could not be listed.')
-  finally:
-    db.session.close()
+      # Add artist to the database
+      db.session.add(artist)
+      db.session.commit()
+      flash('Artist successfully listed!')
+    except:
+      db.session.rollback()
+      print(sys.exc_info())
+      flash('An error occurred. Artist could not be listed.')
+    finally:
+      db.session.close()
+  else:
+    for field_name, error_messages in form.errors.items():
+      for error in error_messages:
+        flash(f"Error in {field_name}: {error}")
+    return redirect(url_for('create_artist_form'))
 
   return redirect(url_for('index'))
 
@@ -573,30 +561,30 @@ def create_shows():
 # Create all Shows
 @app.route('/shows/create', methods=['POST']) 
 def create_show_submission():
+  form = ShowForm(request.form)
+  if form.validate():
+    try:
+      show = Show(
+        artist_id=form.artist_id.data,
+        venue_id=form.venue_id.data,
+        start_time=form.start_time.data
+      )
+      db.session.add(show)
+      db.session.commit()
+      flash('Show was successfully listed!')
 
-  try:
-    # Retrieve data from the form
-    artist_id = request.form['artist_id']
-    venue_id = request.form['venue_id']
-    start_time = request.form['start_time']
+    except Exception as e:
+      db.session.rollback()
+      flash('An error occurred. Show could not be listed.')
+      print(f"Error: {e}")
 
-    # Insert into the association table
-    show = Show(
-      artist_id=artist_id,
-      venue_id=venue_id,
-      start_time=format_datetime(str(start_time))
-    )
-    db.session.add(show)
-    db.session.commit()
-    flash('Show was successfully listed!')
-
-  except Exception as e:
-    db.session.rollback()
-    flash('An error occurred. Show could not be listed.')
-    print(f"Error: {e}")
-
-  finally:
-    db.session.close()
+    finally:
+      db.session.close()
+  else:
+    for field_name, error_messages in form.errors.items():
+      for error in error_messages:
+        flash(f"Error in {field_name}: {error}")
+    return redirect(url_for('create_show_submission'))
 
   return redirect(url_for('index'))
 

@@ -514,3 +514,95 @@ Traceback (most recent call last):
 NameError: name 'show' is not defined
 2025-02-26 13:27:26,765 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:622]
 2025-02-26 13:29:10,650 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:622]
+2025-02-26 20:08:27,095 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:634]
+2025-02-26 20:08:34,601 ERROR: Exception on /venues/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 199, in _key_not_found
+    self._key_fallback(key, None)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 138, in _key_fallback
+    raise KeyError(key) from err
+KeyError: 'artist'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 126, in show_venue
+    "artist_id": show.artist.id,
+  File "lib/sqlalchemy/cyextension/resultproxy.pyx", line 66, in sqlalchemy.cyextension.resultproxy.BaseRow.__getattr__
+  File "lib/sqlalchemy/cyextension/resultproxy.pyx", line 63, in sqlalchemy.cyextension.resultproxy.BaseRow._get_by_key_impl
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 201, in _key_not_found
+    raise AttributeError(ke.args[0]) from ke
+AttributeError: artist
+2025-02-26 20:19:54,230 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:593]
+2025-02-26 20:23:36,572 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:596]
+2025-02-27 07:08:22,145 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:579]
+2025-02-27 07:13:58,468 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:582]
+2025-02-27 07:16:59,339 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:582]
+2025-02-27 07:20:11,846 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:585]
+2025-02-27 07:22:11,965 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:584]
+2025-02-27 07:26:24,844 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:585]
+2025-02-27 07:26:33,782 ERROR: Exception on /artists/create [POST] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'create_artist_submission' did not return a valid response. The function either returned None or ended without a return statement.
+2025-02-27 07:27:08,268 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:585]
+2025-02-27 07:27:28,001 ERROR: Exception on /artists/create [POST] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1203, in make_response
+    raise TypeError(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1198, in make_response
+    rv = self.response_class.force_type(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/werkzeug/wrappers/response.py", line 237, in force_type
+    response = Response(*run_wsgi_app(response, environ))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/werkzeug/test.py", line 1264, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: create_artist_form() takes 0 positional arguments but 2 were given
+The view function did not return a valid response. The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a function.
+2025-02-27 07:27:48,739 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:585]
+2025-02-27 07:45:03,308 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 07:49:55,993 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 07:53:31,135 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 07:58:12,911 ERROR: Exception on /artists/5/edit [POST] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 397, in edit_artist_submission
+    return redirect(url_for('edit_artist_submission'))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/helpers.py", line 220, in url_for
+    return current_app.url_for(
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/werkzeug/routing/map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'edit_artist_submission'. Did you forget to specify values ['artist_id']?
+2025-02-27 09:23:29,566 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 09:31:44,735 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
