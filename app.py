@@ -286,33 +286,38 @@ def search_artists():
 @app.route('/artists/<int:artist_id>') 
 def show_artist(artist_id):
 
-  # Query table to get artists
-  artists_in_db = Artist.query.order_by('id').all()
-  data = []
+  # Fetch the artist By ID
+  artist = Artist.query.get_or_404(artist_id)
 
-  # Build data to send to front end
-  for artist in artists_in_db:
-    past_shows = []
-    upcoming_shows = []
+  # Fetch past shows
+  past_shows_data = []
+  past_shows = db.session.query(Show).join(Venue).filter(
+      Show.artist_id == artist_id, Show.start_time < datetime.now()
+  ).all()
+  for show in past_shows:
+    data = {
+      "venue_id": show.venue.id,
+      "venue_name": show.venue.name,
+      "venue_image_link": show.venue.image_link,
+      "start_time": format_datetime(str(show.start_time))
+    }
+    past_shows_data.append(data)
 
-    for show in artist.shows:
+  # Fetch upcoming shows
+  upcoming_shows_data = []
+  upcoming_shows = db.session.query(Show).join(Venue).filter(
+    Show.artist_id == artist_id, Show.start_time >= datetime.now()
+  ).all()
+  for show in upcoming_shows:
+    data = {
+      "venue_id": show.venue.id,
+      "venue_name": show.venue.name,
+      "venue_image_link": show.venue.image_link,
+      "start_time": format_datetime(str(show.start_time))
+    }
+    upcoming_shows_data.append(data)
 
-      venue = show.venue
-
-      show_data = {
-        "venue_id": venue.id,
-        "venue_name": venue.name,
-        "venue_image_link": venue.image_link,
-        "start_time": format_datetime(str(show.start_time))
-      }
-
-      # Categorize show as past or upcoming based on current date
-      if show.start_time < datetime.now():
-        past_shows.append(show_data)
-      else:
-        upcoming_shows.append(show_data)
-
-    artist_data = {
+  artist_data = {
       "id" : artist.id,
       "name" : artist.name,
       "genres" : artist.genres,
@@ -330,11 +335,7 @@ def show_artist(artist_id):
       "upcoming_shows_count":len(upcoming_shows)
     }
 
-    data.append(artist_data)
-
-  # Send data to front end
-  data = list(filter(lambda d: d['id'] == artist_id, data))[0]
-  return render_template('pages/show_artist.html', artist=data)
+  return render_template('pages/show_artist.html', artist=artist_data)
 
 #  Update artist Info
 @app.route('/artists/<int:artist_id>/edit', methods=['GET']) 
