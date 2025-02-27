@@ -847,3 +847,5 @@ Traceback (most recent call last):
   File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
     raise TypeError('Parser must be a string or character stream, not '
 TypeError: Parser must be a string or character stream, not datetime
+2025-02-27 12:39:35,516 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 12:42:18,317 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:611]

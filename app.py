@@ -329,8 +329,8 @@ def show_artist(artist_id):
       "seeking_venue" : artist.seeking_venue,
       "seeking_description" : artist.seeking_description,
       "image_link" : artist.image_link,
-      "past_shows" : past_shows,
-      "upcoming_shows" : upcoming_shows,
+      "past_shows" : past_shows_data,
+      "upcoming_shows" : upcoming_shows_data,
       "past_shows_count": len(past_shows),
       "upcoming_shows_count":len(upcoming_shows)
     }
