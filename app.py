@@ -104,60 +104,60 @@ def search_venues():
   return render_template('pages/search_venues.html', results=response, search_term=request.form.get('search_term', ''))
 
 # Get Venues by ID
-@app.route('/venues/<int:venue_id>') 
+@app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
-  
-  # shows the venue page with the given venue_id
-  venues_in_db = Venue.query.order_by('id').all()
-  data = []
+    # Fetch the venue by ID
+    venue = Venue.query.get_or_404(venue_id)
 
-  # Create data to send to Front End
-  for venue in venues_in_db:
-    past_shows = []
-    upcoming_shows = []
-
-    # Iterate over all artists associated with the venue
-    for show in venue.shows:
-
-      artist = show.artist
-
-      show_data = {
-        "artist_id": artist.id,
-        "artist_name": artist.name,
-        "artist_image_link": artist.image_link,
+    # Fetch past shows
+    past_shows_data= []
+    past_shows = db.session.query(Show).join(Artist).filter(
+        Show.venue_id == venue_id, Show.start_time < datetime.now()
+    ).all()
+    for show in past_shows:
+      data = {
+        "artist_id": show.artist.id,
+        "artist_name": show.artist.name,
+        "artist_image_link": show.artist.image_link,
         "start_time": format_datetime(str(show.start_time))
       }
+      past_shows_data.append(data)
 
-      # Categorise show as past or upcoming based on current date
-      if show.start_time < datetime.now():
-        past_shows.append(show_data)
-      else:
-        upcoming_shows.append(show_data)
+    # Fetch upcoming shows
+    upcoming_shows_data = []
+    upcoming_shows = db.session.query(Show).join(Artist).filter(
+        Show.venue_id == venue_id, Show.start_time >= datetime.now()
+    ).all()
+    for show in upcoming_shows:
+      data = {
+        "artist_id": show.artist.id,
+        "artist_name": show.artist.name,
+        "artist_image_link": show.artist.image_link,
+        "start_time": format_datetime(str(show.start_time))
+      }
+      upcoming_shows_data.append(data)
 
-    # Create venue data dictionary
+    # Prepare venue data
     venue_data = {
-      "id": venue.id,
-      "name": venue.name,
-      "genres": venue.genres,
-      "address": venue.address,
-      "city": venue.city,
-      "state": venue.state,
-      "phone": venue.phone,
-      "website": venue.website,
-      "facebook_link": venue.facebook_link,
-      "seeking_talent": venue.seeking_talent,
-      "seeking_description": venue.seeking_description,
-      "image_link": venue.image_link,
-      "past_shows": past_shows,
-      "upcoming_shows": upcoming_shows,
-      "past_shows_count": len(past_shows),
-      "upcoming_shows_count": len(upcoming_shows),
+        "id": venue.id,
+        "name": venue.name,
+        "genres": venue.genres,
+        "address": venue.address,
+        "city": venue.city,
+        "state": venue.state,
+        "phone": venue.phone,
+        "website": venue.website,
+        "facebook_link": venue.facebook_link,
+        "seeking_talent": venue.seeking_talent,
+        "seeking_description": venue.seeking_description,
+        "image_link": venue.image_link,
+        "past_shows": past_shows_data,
+        "upcoming_shows": upcoming_shows_data,
+        "past_shows_count": len(past_shows_data),
+        "upcoming_shows_count": len(upcoming_shows_data),
     }
 
-    data.append(venue_data)
-
-  data = list(filter(lambda d: d['id'] == venue_id, data))[0]
-  return render_template('pages/show_venue.html', venue=data)
+    return render_template('pages/show_venue.html', venue=venue_data)
 
 #  Create Venue
 @app.route('/venues/create', methods=['GET']) 

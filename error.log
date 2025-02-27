@@ -607,3 +607,243 @@ werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'edit_a
 2025-02-27 09:23:29,566 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
 2025-02-27 09:31:44,735 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
 2025-02-27 10:01:01,195 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 10:11:24,658 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 11:32:46,394 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:609]
+2025-02-27 11:54:48,957 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:611]
+2025-02-27 11:55:03,775 ERROR: Exception on /artists/5 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 338, in show_artist
+    return render_template('pages/show_artist.html', artist=artist_data)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/layouts/main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 54, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 15, in format_datetime
+    date = dateutil.parser.parse(value)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 556, in parse
+    res, skipped_tokens = self._parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 675, in _parse
+    l = _timelex.split(timestr)         # Splits the timestr into tokens
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 192, in split
+    return list(cls(s))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
+    raise TypeError('Parser must be a string or character stream, not '
+TypeError: Parser must be a string or character stream, not datetime
+2025-02-27 11:59:16,560 ERROR: Exception on /artists/5 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 338, in show_artist
+    return render_template('pages/show_artist.html', artist=artist_data)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/layouts/main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 54, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 15, in format_datetime
+    date = dateutil.parser.parse(value)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 556, in parse
+    res, skipped_tokens = self._parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 675, in _parse
+    l = _timelex.split(timestr)         # Splits the timestr into tokens
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 192, in split
+    return list(cls(s))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
+    raise TypeError('Parser must be a string or character stream, not '
+TypeError: Parser must be a string or character stream, not datetime
+2025-02-27 12:01:03,975 ERROR: Exception on /artists/5 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 338, in show_artist
+    return render_template('pages/show_artist.html', artist=artist_data)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/layouts/main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 54, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 15, in format_datetime
+    date = dateutil.parser.parse(value)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 556, in parse
+    res, skipped_tokens = self._parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 675, in _parse
+    l = _timelex.split(timestr)         # Splits the timestr into tokens
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 192, in split
+    return list(cls(s))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
+    raise TypeError('Parser must be a string or character stream, not '
+TypeError: Parser must be a string or character stream, not datetime
+2025-02-27 12:02:21,250 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:611]
+2025-02-27 12:02:29,569 ERROR: Exception on /artists/5 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 338, in show_artist
+    return render_template('pages/show_artist.html', artist=artist_data)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/layouts/main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 54, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 15, in format_datetime
+    date = dateutil.parser.parse(value)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 556, in parse
+    res, skipped_tokens = self._parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 675, in _parse
+    l = _timelex.split(timestr)         # Splits the timestr into tokens
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 192, in split
+    return list(cls(s))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
+    raise TypeError('Parser must be a string or character stream, not '
+TypeError: Parser must be a string or character stream, not datetime
+2025-02-27 12:04:30,298 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:610]
+2025-02-27 12:08:45,822 INFO: errors [in /Users/Ricardo/Documents/Software Development/Fy-yur/app.py:611]
+2025-02-27 12:08:56,434 ERROR: Exception on /artists/5 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 338, in show_artist
+    return render_template('pages/show_artist.html', artist=artist_data)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/layouts/main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 54, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 15, in format_datetime
+    date = dateutil.parser.parse(value)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 556, in parse
+    res, skipped_tokens = self._parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 675, in _parse
+    l = _timelex.split(timestr)         # Splits the timestr into tokens
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 192, in split
+    return list(cls(s))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
+    raise TypeError('Parser must be a string or character stream, not '
+TypeError: Parser must be a string or character stream, not datetime
+2025-02-27 12:10:09,064 ERROR: Exception on /artists/1 [GET] [in /Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 338, in show_artist
+    return render_template('pages/show_artist.html', artist=artist_data)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/layouts/main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/templates/pages/show_artist.html", line 54, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "/Users/Ricardo/Documents/Software Development/Fy-yur/app.py", line 15, in format_datetime
+    date = dateutil.parser.parse(value)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 1168, in parse
+    return DEFAULTPARSER.parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 556, in parse
+    res, skipped_tokens = self._parse(timestr, **kwargs)
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 675, in _parse
+    l = _timelex.split(timestr)         # Splits the timestr into tokens
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 192, in split
+    return list(cls(s))
+  File "/Users/Ricardo/.pyenv/versions/3.8.20/lib/python3.8/site-packages/dateutil/parser.py", line 60, in __init__
+    raise TypeError('Parser must be a string or character stream, not '
+TypeError: Parser must be a string or character stream, not datetime
