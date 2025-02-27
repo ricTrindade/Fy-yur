@@ -1,5 +1,17 @@
+from flask import Flask
+from flask_migrate import Migrate
+from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ARRAY
-from config import db
+
+from config import Config
+
+# App & DB Config
+app = Flask(__name__)
+app.config.from_object(Config)
+moment = Moment(app)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Show Model
 class Show(db.Model):
