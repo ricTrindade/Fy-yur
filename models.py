@@ -1,23 +1,5 @@
-import os
-from dotenv import load_dotenv
-from flask import Flask
-from flask_migrate import Migrate
-
-from config import SQLALCHEMY_DATABASE_URI
-from flask_wtf import Form
-from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ARRAY
-
-# App & DB Config
-app = Flask(__name__)
-app.secret_key = os.urandom(24)
-moment = Moment(app)
-load_dotenv()
-DATABASE_URL = SQLALCHEMY_DATABASE_URI
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+from config import db
 
 # Show Model
 class Show(db.Model):
